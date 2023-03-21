@@ -1,23 +1,23 @@
 #this file consists of code for instances and sg
 provider "aws" {
-region = "ap-south-1"
-access_key = "AKIARSPNELGYCJEVYJ4K"
-secret_key = "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"
+region = "us-east-1"
+access_key = "AKIAUURNY6KY2SWPYLRE"
+secret_key = "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"
 }
 
 resource "aws_instance" "one" {
-  ami             = "ami-0d81306eddc614a45"
+  ami             = "ami-005f9685cb30f234b"
   instance_type   = "t2.micro"
-  key_name        = "rmk8s"
+  key_name        = "awskeypair"
   vpc_security_group_ids = [aws_security_group.three.id]
-  availability_zone = "ap-south-1a"
+  availability_zone = "us-east-1a"
   user_data       = <<EOF
 #!/bin/bash
 sudo -i
 yum install httpd -y
 systemctl start httpd
 chkconfig httpd on
-echo "hai all this is my app created by terraform infrastructurte by raham sir server-1" > /var/www/html/index.html
+echo "hai all this is my app created by terraform infrastructure by shamily server-1" > /var/www/html/index.html
 EOF
   tags = {
     Name = "server-1"
@@ -25,11 +25,11 @@ EOF
 }
 
 resource "aws_instance" "two" {
-  ami             = "ami-0d81306eddc614a45"
+  ami             = "ami-005f9685cb30f234b"
   instance_type   = "t2.micro"
-  key_name        = "rmk8s"
+  key_name        = "awskeypair"
   vpc_security_group_ids = [aws_security_group.three.id]
-  availability_zone = "ap-south-1b"
+  availability_zone = "us-east-1b"
   user_data       = <<EOF
 #!/bin/bash
 sudo -i
@@ -76,7 +76,7 @@ name = "rahamuser11"
 }
 
 resource "aws_ebs_volume" "six" {
- availability_zone = "ap-south-1b"
+ availability_zone = "us-east-1b"
   size = 40
   tags = {
     Name = "ebs-001"
