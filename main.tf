@@ -8,9 +8,9 @@ secret_key = ""
 resource "aws_instance" "one" {
   ami             = "ami-005f9685cb30f234b"
   instance_type   = "t2.micro"
-  key_name        = "awskeypair"
+  key_name        = ""
   vpc_security_group_ids = [aws_security_group.three.id]
-  availability_zone = "us-east-1a"
+  availability_zone = ""
   user_data       = <<EOF
 #!/bin/bash
 sudo -i
@@ -27,7 +27,7 @@ EOF
 resource "aws_instance" "two" {
   ami             = "ami-005f9685cb30f234b"
   instance_type   = "t2.micro"
-  key_name        = "awskeypair"
+  key_name        = ""
   vpc_security_group_ids = [aws_security_group.three.id]
   availability_zone = "us-east-1b"
   user_data       = <<EOF
@@ -68,7 +68,7 @@ resource "aws_security_group" "three" {
 }
 
 resource "aws_s3_bucket" "four" {
-  bucket = "shamily1256bucketterra"
+  bucket = ""
 }
 
 resource "aws_iam_user" "five" {
